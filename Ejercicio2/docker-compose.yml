@@ -1,0 +1,24 @@
+services:
+  app:
+    image: apppypospablo:01
+    container_name: cont_post_pablo  
+    build: .
+    ports: 
+      - "5000:5000"
+    links:
+      - postgres  
+      
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgres-pablo
+    environment: 
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+volumes:
+  postgres_data:

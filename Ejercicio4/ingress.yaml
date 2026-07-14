@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-mongo-pablo
+  annotations:
+    nginx.ingress.kubernetes.io/service-upstream: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: pablo.com
+    http: 
+      paths:
+      - path: /health
+        pathType: Prefix
+        backend:
+          service: 
+            name: prod-get-service-pablo
+            port:
+              number: 80
+      - path: /products
+        pathType: Prefix
+        backend:
+          service: 
+            name: prod-get-service-pablo
+            port:
+              number: 80     
+      - path: /healthpost
+        pathType: Prefix
+        backend:
+          service: 
+            name: prod-post-service-pablo
+            port:
+              number: 80
+      - path: /postproduct
+        pathType: Prefix
+        backend:
+          service: 
+            name: prod-post-service-pablo
+            port:
+              number: 80                

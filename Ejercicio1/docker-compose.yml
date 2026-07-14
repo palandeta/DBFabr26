@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  app-pablo:
+    image: imageapppablo:01
+    container_name: cont_app_pablo
+    build: .
+    ports: 
+      - "3000:3000"
+    links:
+      - bdd-pablo
+
+  bdd-pablo:
+    image: mongo:noble
+    container_name: cont_mongo_pablo
+    ports: 
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
