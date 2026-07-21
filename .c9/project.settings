@@ -1,7 +1,7 @@
 {
     "extensions": {
         "@aws.profile": "",
-        "@aws.samcli.lambdaTimeout": 91234
+        "@aws.samcli.lambdaTimeout": 90000
     },
     "instance": {
         "@automaticShutdown": "30"

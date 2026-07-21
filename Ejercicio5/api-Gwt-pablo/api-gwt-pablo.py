@@ -4,8 +4,7 @@ import os
 
 app = Flask(__name__)
 
-url_auth = os.environ.get("AUTH_SERVICE_HOST", "auth-service-pablo")
-AUTH_SERVICE_URL = f"http://{url_auth}:5000"
+AUTH_SERVICE_URL = f"http://{os.environ.get('AUTH_SERVICE_HOST', 'auth-service-pablo')}:5000"
 
 @app.route("/api/auth/<path:path>", methods= ['GET', 'POST', 'PUT', 'DELETE'])
 def auth_proxy(path):
